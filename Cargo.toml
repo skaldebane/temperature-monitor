@@ -1,0 +1,9 @@
+[package]
+name = "temp-warning"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+notify-rust = "4.11.7"
+sysinfo = "0.35.2"
+tap = "1.0.1"
