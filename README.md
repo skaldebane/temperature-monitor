@@ -1,5 +1,6 @@
 # `temperature-monitor`
 [![No Maintenance Intended](https://unmaintained.tech/badge.svg)](https://unmaintained.tech/)
+
 I usually don't notice when my laptop's struggling to cool down due to the fan being blocked,
 often leading to sudden emergency shutdowns from sustained overheating.
 
