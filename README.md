@@ -1,14 +1,18 @@
 # `temperature-monitor`
 [![No Maintenance Intended](https://unmaintained.tech/badge.svg)](https://unmaintained.tech/)
+I usually don't notice when my laptop's struggling to cool down due to the fan being blocked,
+often leading to sudden emergency shutdowns from sustained overheating.
 
-A small personal Linux utility to prevent my laptop from overheating without me noticing,
-so I can unblock the fan before a forced shutdown from sustained heat.
+This is a small personal Linux utility to alert me when the system starts overheating, so I can 
+check and improve the fan's ventilation way before that happens.
 
-Use the `systemd-install` script to automatically build it and set up a
-systemd service to run at startup.
+![[Notification screenshot]](img/screenshot.png)
 
-`temperature-monitor` assumes that:
-- `acpitz temp1` exists and is a good overall temperature measure.
+To install, use the `systemd-install` script: it'll automatically build the project, copy the binary to `/usr/local/bin`,
+then set up and start a systemd service to run at startup.
+
+Assumptions:
+- `acpitz temp1` exists and is a good sensor for overall temperature measure.
 - 80°C is a reasonable threshold.
 - The desktop environment supports XDG notifications properly.
 
