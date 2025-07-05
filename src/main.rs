@@ -4,8 +4,7 @@ use std::time::Duration;
 use sysinfo::Components;
 
 fn main() {
-    let mut handle: notify_rust::error::Result<NotificationHandle> =
-        Err(notify_rust::error::Error::from(""));
+    let mut handle: Option<NotificationHandle> = None;
     let mut components = Components::new_with_refreshed_list();
     loop {
         let acpi_component = components
@@ -17,7 +16,7 @@ fn main() {
                 let body_text = format!(
                     "Your computer's temperature ({temp:.0}°C) exceeds safe limits. Please check the fan's ventilation."
                 );
-                if let Ok(ref mut h) = handle {
+                if let Some(ref mut h) = handle {
                     h.body(&body_text);
                     h.update();
                 } else {
@@ -30,12 +29,13 @@ fn main() {
                         .hint(Hint::Resident(true))
                         .timeout(0)
                         .show()
-                        .inspect_err(|err| eprintln!("Error showing notification: {:?}", err));
+                        .inspect_err(|err| eprintln!("Error showing notification: {:?}", err))
+                        .ok();
                 }
             } else {
-                if let Ok(h) = handle {
+                if let Some(h) = handle {
                     h.close();
-                    handle = Err(notify_rust::error::Error::from(""));
+                    handle = None;
                 }
             }
         }
