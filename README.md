@@ -9,8 +9,8 @@ check and improve the fan's ventilation way before that happens.
 
 ![[Notification screenshot]](img/screenshot.png)
 
-To install, use the `systemd-install` script: it'll automatically build the project, copy the binary to `/usr/local/bin`,
-then set up and start a systemd service to run at startup.
+To install, use the `systemd-install` script: it'll automatically build the project, copy the binary to `~/.local/bin/`,
+then set up and start a systemd user service to run at startup.
 
 Assumptions:
 - `acpitz temp1` exists and is a good sensor for overall temperature measure.
@@ -18,6 +18,7 @@ Assumptions:
 - The desktop environment supports XDG notifications properly.
 
 All potential errors are handled / ignored, so this shall normally never crash.
+If it ever does for whatever reason, systemd shall restart it in a few seconds.
 
 [No maintenance intended](https://unmaintained.tech/), use at your own risk.
 

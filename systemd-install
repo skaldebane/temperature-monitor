@@ -1,8 +1,8 @@
 #!/bin/bash
 
 cargo build --release &&
-sudo systemctl stop temperature-monitor.service &&
-sudo cp ./target/release/temperature-monitor /usr/local/bin/ &&
-sudo cp ./temperature-monitor.service /etc/systemd/system/ &&
-sudo systemctl daemon-reload &&
-sudo systemctl start temperature-monitor.service
+systemctl --user stop temperature-monitor.service &&
+cp ./target/release/temperature-monitor ~/.local/bin/ &&
+cp ./temperature-monitor.service ~/.config/systemd/user/ &&
+systemctl --user daemon-reload &&
+systemctl --user start temperature-monitor.service
