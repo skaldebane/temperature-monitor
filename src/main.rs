@@ -29,7 +29,8 @@ fn main() {
                         .urgency(Urgency::Normal)
                         .hint(Hint::Resident(true))
                         .timeout(0)
-                        .show();
+                        .show()
+                        .inspect_err(|err| eprintln!("Error showing notification: {:?}", err));
                 }
             } else {
                 if let Ok(h) = handle {
