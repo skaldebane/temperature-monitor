@@ -25,7 +25,7 @@ fn main() {
                         .summary("Temperature dangerously high")
                         .body(&body_text)
                         .icon("dialog-warning")
-                        .urgency(Urgency::Normal)
+                        .urgency(Urgency::Critical)
                         .hint(Hint::Resident(true))
                         .timeout(0)
                         .show()
