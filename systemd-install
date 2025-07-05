@@ -1,8 +1,19 @@
 #!/bin/bash
 
+echo "building..." &&
 cargo build --release &&
-systemctl --user stop temperature-monitor.service &&
+echo "stopping existing service (if any)..." &&
+(systemctl --user stop temperature-monitor.service || true) &&
+echo "copying binary into ~/.local/bin/..."  &&
 cp ./target/release/temperature-monitor ~/.local/bin/ &&
+echo "copying service file..." &&
 cp ./temperature-monitor.service ~/.config/systemd/user/ &&
+echo "reloading systemd configuration..." &&
 systemctl --user daemon-reload &&
-systemctl --user start temperature-monitor.service
+echo "starting service..." &&
+systemctl --user start temperature-monitor.service &&
+echo "done!" &&
+echo "----------" &&
+echo "check status:   systemctl --user status temperature-monitor.service" &&
+echo "view logs:      journalctl --user -u temperature-monitor.service -f" ||
+echo "error setting up service!"
