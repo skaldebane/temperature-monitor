@@ -10,6 +10,8 @@ echo "copying service file..." &&
 cp ./temperature-monitor.service ~/.config/systemd/user/ &&
 echo "reloading systemd configuration..." &&
 systemctl --user daemon-reload &&
+echo "enabling service..." &&
+systemctl --user enable temperature-monitor.service &&
 echo "starting service..." &&
 systemctl --user start temperature-monitor.service &&
 echo "done!" &&
